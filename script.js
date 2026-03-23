@@ -38,6 +38,7 @@ function initApp() {
     e.preventDefault();
     const btn = e.target.querySelector("button");
     btn.textContent = "¡ENVIADO CON ÉXITO!";
+    alert("Mensaje Enviado Exitosamente")
     btn.style.backgroundColor = "#4CAF50";
     btn.style.color = "white";
     btn.style.borderColor = "#4CAF50";
