@@ -1,135 +1,159 @@
-// botones de funcionalidades, por ejemplo una alerta cuando el usuario de click en el icono de carrito de compra
-function initApp() {
-  // Inicializar Lucide
-  if (typeof lucide !== "undefined") {
-    lucide.createIcons();
-  }
+//DATOS DE LOS PRODUCTOS
 
-  // Navbar dinámico
-  window.addEventListener("scroll", () => {
-    const nav = document.getElementById("navbar");
-    if (window.scrollY > 80) {
-      nav.classList.add("scrolled");
-    } else {
-      nav.classList.remove("scrolled");
-    }
-  });
-
-  // Animaciones de revelado al hacer scroll
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
-
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
-      }
-    });
-  }, observerOptions);
-
-  document
-    .querySelectorAll(".reveal")
-    .forEach((el) => revealObserver.observe(el));
-
-  // Manejo del formulario (evitar recarga de página)
-  document.getElementById("contactForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const btn = e.target.querySelector("button");
-    btn.textContent = "¡ENVIADO CON ÉXITO!";
-    alert("Mensaje Enviado Exitosamente")
-    btn.style.backgroundColor = "#4CAF50";
-    btn.style.color = "white";
-    btn.style.borderColor = "#4CAF50";
-    e.target.reset();
-  });
-}
-
-// Carga segura
-window.addEventListener("load", initApp);
-
-
-// esto es pueba 
 const productos = [
   {
     id: 1,
     nombre: "Top Performance V2",
-    precio: 45.00,
-    imagen: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1920&auto=format&fit=crop",
-    categoria: "ropa"
+    precio: 45.0,
+    imagen: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",
   },
   {
     id: 2,
     nombre: "Short Compresión Elite",
-    precio: 38.00,
-    imagen: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop",
-    categoria: "ropa"
+    precio: 38.0,
+    imagen: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e",
   },
   {
     id: 3,
     nombre: "Zapatillas Velocity X",
-    precio: 115.00,
-    imagen: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1470&auto=format&fit=crop",
-    categoria: "calzado"
+    precio: 115.0,
+    imagen: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
   },
-  {
-    id: 4,
-    nombre: "Mancuernas Pro 10kg",
-    precio: 60.00,
-    imagen: "https://images.unsplash.com/photo-1599058917214-0c8f9c7f3c3c?q=80&w=800",
-    categoria: "pesas"
-  }
 ];
 
-//
+// 🔹 CARRITO
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function renderProductos(lista) {
-  const contenedor = document.querySelector('.grid-products');
-  contenedor.innerHTML = ""; // limpiar antes de renderizar
+//RENDERIZAMOS DE LOS PRODUCTOS
+function renderProductos() {
+  const container = document.getElementById("product-container");
+  container.innerHTML = "";
 
-  lista.forEach(prod => {
-    contenedor.innerHTML += `
-      <div class="card reveal">
-        <div class="card-img">
-          <img src="${prod.imagen}" alt="${prod.nombre}">
-        </div>
-        <div class="card-info">
-          <h3>${prod.nombre}</h3>
-          <p>$${prod.precio.toFixed(2)}</p>
-          <button class="btn btn-light add-cart" data-name="Runners" data-price="115.00"">AGREGAR AL CARRITO</button>
-          <button class="btn btn-light add button-buy" data-name="Runners" data-price="115.00"">COMPRAR AHORA</button>
+  productos.forEach((prod) => {
+    container.innerHTML += `
+      <div class="col-md-4 mb-4">
+        <div class="card bg-dark text-white h-100">
+          <img src="${prod.imagen}" class="card-img-top">
+          <div class="card-body">
+            <h5>${prod.nombre}</h5>
+            <p>$${prod.precio.toFixed(2)}</p>
+
+            <button class="btn btn-light add-cart"
+              data-name="${prod.nombre}"
+              data-price="${prod.precio}">
+              AGREGAR AL CARRITO
+            </button>
+          </div>
         </div>
       </div>
     `;
   });
 }
 
-// Render inicial
-renderProductos(productos);
-
-// funcionalidad del carrito
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-// actualizar contador
+//ACTUALIZAR CONTADOR
 function updateCartUI() {
-  document.getElementById("cart-count").textContent = cart.length;
+  const count = document.getElementById("cart-count");
+  if (count) count.textContent = cart.length;
 }
 
-// agregar producto
-document.querySelectorAll(".add-cart").forEach(btn => {
-  btn.addEventListener("click", () => {
+//EVENTO GLOBAL
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("add-cart")) {
     const product = {
-      name: btn.dataset.name,
-      price: Number(btn.dataset.price)
+      name: e.target.dataset.name,
+      price: Number(e.target.dataset.price),
     };
 
     cart.push(product);
     localStorage.setItem("cart", JSON.stringify(cart));
 
     updateCartUI();
-  });
+    renderCheckout();
+
+    // feedback visual
+    e.target.textContent = "✔ Agregado";
+    setTimeout(() => {
+      e.target.textContent = "AGREGAR AL CARRITO";
+    }, 1000);
+  }
 });
 
-// inicializar
-updateCartUI();
+//RENDERIZAMOS EL CHECKOUT
+function renderCheckout() {
+  const container = document.getElementById("checkout-items");
+  const totalEl = document.getElementById("checkout-total");
+
+  if (!container || !totalEl) return;
+
+  container.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    container.innerHTML += `
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <span>${item.name}</span>
+        <span>$${item.price.toFixed(2)}</span>
+      </div>
+    `;
+  });
+
+  totalEl.textContent = total.toFixed(2);
+}
+
+//FUNCION DEL CHECKOUT
+function checkout() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+
+  if (!name || !email) {
+    alert("Completa todos los campos");
+    return;
+  }
+
+  if (cart.length === 0) {
+    alert("Tu carrito está vacío");
+    return;
+  }
+
+  // guardar orden
+  localStorage.setItem("lastOrder", JSON.stringify(cart));
+
+  // limpiar carrito
+  localStorage.removeItem("cart");
+  cart = [];
+
+  updateCartUI();
+  renderCheckout();
+
+  alert("✅ Compra realizada exitosamente");
+}
+
+//NAVBAR SCROLL
+window.addEventListener("scroll", () => {
+  const nav = document.getElementById("navbar");
+  if (!nav) return;
+
+  if (window.scrollY > 50) {
+    nav.classList.add("scrolled");
+  } else {
+    nav.classList.remove("scrolled");
+  }
+});
+
+// ===============================
+// 🔹 INIT APP
+// ===============================
+function initApp() {
+  renderProductos();
+  updateCartUI();
+  renderCheckout();
+
+  // iconos
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+  }
+}
+
+window.addEventListener("load", initApp);

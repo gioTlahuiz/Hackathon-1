@@ -1,355 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Veloce Athletics | Rendimiento Sin Límites</title>
 
-  <!-- Iconos -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.0/umd/lucide.min.js"></script>
-
   <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link href="style.css" rel="stylesheet">
+
+  <!-- Iconos -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
 
-<!-- CARRUSEL DE PRODUCTOS -->
-<section id="productos" class="container mt-5">
-  <h2>Productos destacados</h2>
+<!-- 🔹 NAVBAR -->
+<nav id="navbar" class="d-flex justify-content-between align-items-center p-3 bg-black text-white">
+  <a href="#" class="logo text-white text-decoration-none">VELOCE<span>.</span></a>
 
-  <div id="carouselCards" class="carousel slide">
-    <div class="carousel-inner">
+  <div class="nav-links">
+    <a href="#coleccion" class="text-white me-3">Colección</a>
+    <a href="#tecnologia" class="text-white me-3">Tecnología</a>
+    <a href="#nosotros" class="text-white me-3">Nosotros</a>
+    <a href="#contacto" class="text-white">Contacto</a>
+  </div>
 
-      <!-- Slide 1 -->
-      <div class="carousel-item active">
-        <div class="d-flex overflow-auto">
+  <div class="nav-icons position-relative">
+    <i data-lucide="shopping-cart" style="cursor:pointer;"></i>
+    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge bg-danger">0</span>
+  </div>
+</nav>
 
-          <div class="card producto-card me-3">
-            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1920&auto=format&fit=crop" class="card-img-top" alt="Ropa de mujer">
-            <div class="card-body">
-              <h5 class="card-title">Top performance V2</h5>
-              <p class="card-text">$245.00</p>
-              <button class="btn btn-primary">Agregar al carrito</button>
-            </div>
-          </div>
+<!-- 🔹 HERO -->
+<header class="hero text-white d-flex align-items-center justify-content-center text-center" style="height:90vh; background:black;">
+  <div>
+    <h1>Domina Tu <span>Potencial</span></h1>
+    <p>Rendimiento sin límites</p>
+    <a href="#coleccion" class="btn btn-light">Explorar</a>
+  </div>
+</header>
 
-          <div class="card producto-card me-3">
-            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop" class="card-img-top" alt="Ropa de hombre">
-            <div class="card-body">
-              <h5 class="card-title">Short Compresión Elite</h5>
-              <p class="card-text">$320.00</p>
-              <button class="btn btn-primary">Agregar al carrito</button>
-            </div>
-          </div>
+<!-- 🔹 PRODUCTOS -->
+<section id="coleccion" class="container py-5">
+  <h2 class="mb-4 text-center">Colección</h2>
 
-          <div class="card producto-card me-3">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1470&auto=format&fit=crop" class="card-img-top" alt="Calzado">
-            <div class="card-body">
-              <h5 class="card-title">Zapatillas Velocity X</h5>
-              <p class="card-text">$1115.00</p>
-              <button class="btn btn-primary">Agregar al carrito</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Controles -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselCards" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselCards" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-
+  <div class="row" id="product-container">
+    <!-- JS renderiza productos aquí -->
   </div>
 </section>
 
-<!-- BANNER DE OFERTA -->
-<section id="promo-oferta" class="container mt-4">
-  <div class="alert alert-warning text-center" role="alert">
-    ¡Oferta especial! Obtén <strong>10% de descuento</strong> en compras mayores a <strong>$1000</strong>
-  </div>
-</section>
+<!-- 🔹 TECNOLOGÍA -->
+<section id="tecnologia" class="container py-5 text-center">
+  <h2>Calidad del producto</h2>
 
-<!-- CALIDAD DEL PRODUCTO -->
-<section id="tecnologia" class="tech-bg container mt-5">
-  <h2 class="text-center mb-4">Calidad del producto</h2>
-
-  <div class="row text-center">
-
-    <div class="col-md-4 feature-item">
+  <div class="row mt-4">
+    <div class="col-md-4">
       <i data-lucide="activity"></i>
       <h4>Gestión de Calor</h4>
-      <p>Nuestra malla Nano-Air disipa el calor más rápido.</p>
+      <p>Disipa el calor más rápido</p>
     </div>
 
-    <div class="col-md-4 feature-item">
+    <div class="col-md-4">
       <i data-lucide="layers"></i>
       <h4>Compresión Pro</h4>
-      <p>Reduce la fatiga y mejora el rendimiento.</p>
+      <p>Reduce la fatiga</p>
     </div>
 
-    <div class="col-md-4 feature-item">
+    <div class="col-md-4">
       <i data-lucide="recycle"></i>
       <h4>Eco-Sostenible</h4>
-      <p>Materiales reciclados sin perder calidad.</p>
+      <p>Material reciclado</p>
+    </div>
+  </div>
+</section>
+
+<!-- 🔹 CHECKOUT -->
+<section id="checkout" class="container py-5">
+  <div class="row">
+
+    <!-- FORMULARIO -->
+    <div class="col-md-7">
+      <h4>Datos de envío</h4>
+
+      <input class="form-control mb-3" placeholder="Nombre" id="name">
+      <input class="form-control mb-3" placeholder="Correo" id="email">
+      <input class="form-control mb-3" placeholder="Dirección">
+
+      <h4>Método de pago</h4>
+      <select class="form-control mb-3">
+        <option>Tarjeta</option>
+        <option>PayPal</option>
+      </select>
+
+      <button class="btn btn-dark w-100" onclick="checkout()">
+        Finalizar compra
+      </button>
+    </div>
+
+    <!-- RESUMEN -->
+    <div class="col-md-5">
+      <h4>Tu pedido</h4>
+      <div id="checkout-items"></div>
+      <h5>Total: $<span id="checkout-total">0</span></h5>
     </div>
 
   </div>
 </section>
 
-<!-- BENEFICIOS -->
-<section id = "beneficios" class="tech-bg">
-        <div class="section-title reveal">
-            <h2>Beneficios de comprar con nosotros</h2>
-        </div>
-<div class="row text-center">
-    <!-- Beneficio 1 -->
-    <div class="col-md-3 mb-3">
-      <div class="card border-0">
-        <div class="card-body">
-          <h5 class="card-title">🚚 Envío Gratis</h5>
-          <p class="card-text">En compras mayores a $500</p>
-        </div>
-      </div>
-    </div>
+<!-- 🔹 FOOTER -->
+<footer class="text-center p-4 bg-black text-white">
+  <p>© 2026 Veloce Athletics</p>
+</footer>
 
-    <!-- Beneficio 2 -->
-    <div class="col-md-3 mb-3">
-      <div class="card border-0">
-        <div class="card-body">
-          <h5 class="card-title">💳 Pago Seguro</h5>
-          <p class="card-text">Transacciones protegidas con SSL</p>
-        </div>
-      </div>
-    </div>
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Beneficio 3 -->
-    <div class="col-md-3 mb-3">
-      <div class="card border-0">
-        <div class="card-body">
-          <h5 class="card-title">🔄 Devolución Fácil</h5>
-          <p class="card-text">Devuelve tu compra en 30 días</p>
-        </div>
-      </div>
-    </div>
+<!-- Iconos -->
+<script>
+  lucide.createIcons();
+</script>
 
-    <!-- Beneficio 4 -->
-    <div class="col-md-3 mb-3">
-      <div class="card border-0">
-        <div class="card-body">
-          <h5 class="card-title">📞 Soporte 24/7</h5>
-          <p class="card-text">Estamos para ayudarte cuando lo necesites</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Script -->
+<script src="script.js"></script>
 
 </body>
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Veloce Athletics | Rendimiento Sin Límites</title>
-    <!-- Fuentes de Google -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
-      rel="stylesheet"
-    />
-    <link href="style.css" rel="stylesheet" />
-    <!-- Iconos -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.0/umd/lucide.min.js"></script>
-  </head>
-  <body>
-    <nav id="navbar">
-      <a href="#" class="logo">VELOCE<span>.</span></a>
-      <div class="nav-links">
-        <a href="#coleccion">Colección</a>
-        <a href="#tecnologia">Tecnología</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#contacto">Contacto</a>
-      </div>
-      <div class="nav-icons" id="shopping-cart">
-        <span id="cart-count">0</span>
-        <i data-lucide="shopping-cart" class="cart-icon"  style="cursor: pointer"></i>
-      </div>
-    </nav>
-
-    <!-- Hero -->
-    <header class="hero">
-      <div class="hero-content">
-        <h1 class="reveal">Domina Tu<br /><span>Potencial</span></h1>
-        <p class="reveal">
-          Ingeniería textil avanzada para atletas que no se conforman. Diseñado
-          para el gimnasio, nacido para la victoria.
-        </p>
-        <a href="#coleccion" class="btn reveal">Explorar Ahora</a>
-      </div>
-    </header>
-
-    <!-- Productos -->
-    <section id="coleccion">
-      <div class="section-title reveal">
-        <h2>Colección 2024</h2>
-      </div>
-      <div class="grid-products">
-        <div class="card reveal">
-          <div class="card-img">
-            <img
-              src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1920&auto=format&fit=crop"
-              alt="Ropa Mujer"
-            />
-          </div>
-          <div class="card-info">
-            <h3>Top Performance V2</h3>
-            <p>$45.00</p>
-          </div>
-        </div>
-        <div class="card reveal">
-          <div class="card-img">
-            <img
-              src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop"
-              alt="Ropa Hombre"
-            />
-          </div>
-          <div class="card-info">
-            <h3>Short Compresión Elite</h3>
-            <p>$38.00</p>
-          </div>
-        </div>
-        <div class="card reveal">
-          <div class="card-img">
-            <img
-              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1470&auto=format&fit=crop"
-              alt="Calzado"
-            />
-          </div>
-          <div class="card-info">
-            <h3>Zapatillas Velocity X</h3>
-            <p>$115.00</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tecnología -->
-    <section id="tecnologia" class="tech-bg">
-      <div class="section-title reveal">
-        <h2>Nuestra Ciencia</h2>
-      </div>
-      <div class="grid-features">
-        <div class="feature-item reveal">
-          <i data-lucide="activity" size="40"></i>
-          <h4>Gestión de Calor</h4>
-          <p>
-            Nuestra malla Nano-Air disipa el calor un 40% más rápido que el
-            algodón convencional.
-          </p>
-        </div>
-        <div class="feature-item reveal">
-          <i data-lucide="layers" size="40"></i>
-          <h4>Compresión Pro</h4>
-          <p>
-            Zonas de soporte muscular diseñadas para reducir la fatiga y
-            prevenir lesiones.
-          </p>
-        </div>
-        <div class="feature-item reveal">
-          <i data-lucide="recycle" size="40"></i>
-          <h4>Eco-Sostenible</h4>
-          <p>
-            Fabricado con un 75% de materiales reciclados del océano, sin
-            sacrificar calidad.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Nosotros -->
-    <section id="nosotros">
-      <div class="section-title reveal">
-        <h2>Nuestra Misión</h2>
-      </div>
-      <div class="about-content reveal">
-        <div class="about-text">
-          <p>
-            En Veloce Athletics, no solo vendemos ropa; creamos el equipamiento
-            que te acompaña en tu búsqueda de la excelencia. Fundada por
-            ex-atletas olímpicos, entendemos cada gota de sudor.
-          </p>
-          <p>
-            Creemos en la fusión perfecta entre estética moderna y funcionalidad
-            extrema. Cada costura, cada fibra y cada diseño es probado en
-            condiciones de alto rendimiento.
-          </p>
-          <a
-            href="#contacto"
-            class="btn"
-            style="margin-top: 20px; font-size: 0.8rem"
-            >Únete al Equipo</a
-          >
-        </div>
-        <div class="about-img"></div>
-      </div>
-    </section>
-
-    <!-- Contacto -->
-    <section id="contacto" class="tech-bg">
-      <div class="section-title reveal">
-        <h2>Contáctanos</h2>
-      </div>
-      <div class="contact-container reveal">
-        <form id="contactForm">
-          <div class="form-group">
-            <label>Nombre Completo</label>
-            <input type="text" placeholder="Ejemplo: Juan Pérez" />
-          </div>
-          <div class="form-group">
-            <label>Correo Electrónico</label>
-            <input type="email" placeholder="Ejemplo@gmail.com" />
-          </div>
-          <div class="form-group">
-            <label>Mensaje</label>
-            <textarea
-              rows="5"
-              placeholder="¿Como podemos ayudarte?"
-            ></textarea>
-          </div>
-          <button type="submit" class="btn" style="width: 100%">
-            Enviar Mensaje
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <footer>
-      <a href="#" class="logo">VELOCE<span>.</span></a>
-      <div class="social-links">
-        <a href="#"><i data-lucide="instagram"></i></a>
-        <a href="#"><i data-lucide="facebook"></i></a>
-        <a href="#"><i data-lucide="twitter"></i></a>
-      </div>
-      <p style="color: var(--text-muted); font-size: 0.9rem">
-        &copy; 2024 Veloce Athletics. Todos los derechos reservados.
-      </p>
-    </footer>
-    <!-- agregamos los links necesarios para poder usar los iconos -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-    lucide.createIcons();
-    </script>
-    <script src="script.js"></script>
-  </body>
 </html>
-
