@@ -117,7 +117,7 @@ function checkout() {
     return;
   }
 
-  // guardar orden
+  // guardamos en orden
   localStorage.setItem("lastOrder", JSON.stringify(cart));
 
   // limpiar carrito
@@ -142,9 +142,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// ===============================
-// 🔹 INIT APP
-// ===============================
+//INICIALIZAMOS LA APP
 function initApp() {
   renderProductos();
   updateCartUI();
