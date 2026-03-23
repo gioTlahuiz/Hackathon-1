@@ -97,6 +97,8 @@ function renderProductos(lista) {
         <div class="card-info">
           <h3>${prod.nombre}</h3>
           <p>$${prod.precio.toFixed(2)}</p>
+          <button class="btn btn-light add-cart" data-name="Runners" data-price="115.00"">AGREGAR AL CARRITO</button>
+          <button class="btn btn-light add button-buy" data-name="Runners" data-price="115.00"">COMPRAR AHORA</button>
         </div>
       </div>
     `;
@@ -105,3 +107,29 @@ function renderProductos(lista) {
 
 // Render inicial
 renderProductos(productos);
+
+// funcionalidad del carrito
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// actualizar contador
+function updateCartUI() {
+  document.getElementById("cart-count").textContent = cart.length;
+}
+
+// agregar producto
+document.querySelectorAll(".add-cart").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const product = {
+      name: btn.dataset.name,
+      price: Number(btn.dataset.price)
+    };
+
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartUI();
+  });
+});
+
+// inicializar
+updateCartUI();
