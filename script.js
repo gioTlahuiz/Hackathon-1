@@ -1,5 +1,5 @@
 
-//
+// esto es pueba 
 const productos = [
   {
     id: 1,
